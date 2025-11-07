@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Masuk ke Pesan</title>
+  <script src="pesan.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding-top: 100px;
+    }
+    .box {
+      background: white;
+      width: 300px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      margin: 8px;
+      padding: 10px;
+      width: 80%;
+    }
+    #pesan {
+      margin-top: 15px;
+      font-size: 16px;
+      color: #333;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>🔒 Masukkan Kode Akses</h2>
+    <input id="kode" placeholder="Kode rahasia"><br>
+    <button onclick="cekKode()">Lihat Pesan</button>
+
+    <p id="pesan"></p>
+  </div>
+</body>
+</html>
