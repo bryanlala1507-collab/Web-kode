@@ -44,20 +44,29 @@ button {
 </style>
 </head>
 <body>
+
 <h1>Rendeem Code For : Joki Game</h1>
+
 <!-- REDEEM -->
 <div class="box">
 <h2>Redeem Code</h2>
+
+<!-- TAMBAHAN NAMA -->
+<input type="text" id="nama" placeholder="Your Name">
+
 <input type="text" id="code" placeholder="Code here">
 <button onclick="redeem()">Redeem Code</button>
 <p id="hasil"></p>
 </div>
+
 <h1>Admin Area</h1>
+
 <!-- ADMIN -->
 <div class="box">
 <h2>Admin Panel</h2>
 <button onclick="loginAdmin()">Masuk Admin</button>
 <h6>System by : Bryan</h6>
+
 <div id="adminPanel">
 <h3>Notifikasi</h3>
 <div id="notifList"></div>
@@ -89,7 +98,20 @@ const KODE_SPESIAL = [
 // REDEEM
 // =====================
 function redeem() {
+    let nama = document.getElementById("nama").value.trim();
     let kode = document.getElementById("code").value.trim();
+
+    if (nama === "") {
+        alert("Please Enter Your Name");
+        return;
+    }
+
+    // TAMBAHAN: NAMA TIDAK BOLEH ANGKA
+    if (/\d/.test(nama)) {
+        alert("Name cannot contain numbers");
+        return;
+    }
+
     if (kode === "") {
         alert("Please Enter The Code");
         return;
@@ -106,8 +128,9 @@ function redeem() {
         usedCodes.push(kode);
         localStorage.setItem("usedCodes", JSON.stringify(usedCodes));
 
+        // TAMBAHAN FORMAT NOTIF
         let notif = {
-            pesan: `Kode spesial "${kode}" telah di redeem`,
+            pesan: `${nama} mereendem kode (${kode})`,
             waktu: new Date().toLocaleString()
         };
 
@@ -116,13 +139,16 @@ function redeem() {
         localStorage.setItem("notif", JSON.stringify(notifData));
 
         document.getElementById("hasil").innerText = "Redeem berhasil ✅";
+
+        document.getElementById("nama").value = "";
+        document.getElementById("code").value = "";
     } else {
         document.getElementById("hasil").innerText = "Code Doent's Exits ❌";
     }
 }
 
 // =====================
-// ADMIN LOGIN (PROMPT)
+// ADMIN LOGIN
 // =====================
 function loginAdmin() {
     let pass = prompt("Masukkan password admin:");
@@ -169,7 +195,6 @@ function hapusNotif(index) {
     localStorage.setItem("notif", JSON.stringify(data));
     tampilNotif();
 }
-
 </script>
 
 </body>
